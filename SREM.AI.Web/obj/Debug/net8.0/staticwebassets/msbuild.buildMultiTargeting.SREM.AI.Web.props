@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\SREM.AI.Web.props" />
+</Project>

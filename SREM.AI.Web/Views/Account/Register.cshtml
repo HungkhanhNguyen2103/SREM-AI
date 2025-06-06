@@ -1,0 +1,30 @@
+﻿@{
+    Layout = "~/Views/Account/_AccountLayout.cshtml";
+    ViewBag.Title = "Đăng kí";
+}
+<div class="w-full p-10 bg-white/80 rounded-l-none rounded-3xl">
+    <h2 class="text-lg text-gray-600">Chào mừng đến <span class="text-yellow-500 font-semibold">SREM.AI</span></h2>
+    <h1 class="text-3xl font-bold mt-1 mb-6">Đăng kí</h1>
+
+    <label class="block mb-2 text-sm font-medium text-gray-700" for="phone">Số điện thoại</label>
+    <div class="flex mb-4">
+        <select class="border border-gray-300 rounded-l-md px-3 py-2 text-sm bg-white select-bootstrap">
+            <option>Việt Nam (+84)</option>
+        </select>
+        <input type="text" id="phone" placeholder="Vui lòng nhập số điện thoại của bạn" class="w-full border border-gray-300 rounded-r-md px-3 py-2 text-sm input-bootstrap" />
+    </div>
+
+    <button class="w-full bg-orange-500 hover:bg-orange-600 text-white font-semibold py-2 rounded-full mb-6 transition">
+        Tiếp tục
+    </button>
+
+    <div class="my-4">
+        Bằng việc nhấn nút tiếp tục, bạn đã đồng ý với
+        <a href="#" style="color:black;text-decoration:underline;font-weight:bold">Điều khoản sử dụng</a> và
+        <a href="#" style="color:black;text-decoration:underline;font-weight:bold">Chính sách bảo mật</a> của chúng tôi.
+    </div>
+
+    <p class="text-sm text-center text-gray-600">
+        Đã có tài khoản? <a href="/Account/Login" class="text-orange-500 font-medium hover:underline">Đăng Nhập Ngay</a>
+    </p>
+</div>
