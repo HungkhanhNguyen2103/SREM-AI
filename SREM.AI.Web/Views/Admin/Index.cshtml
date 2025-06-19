@@ -1,0 +1,25 @@
+﻿@{
+    // ViewData["Title"] = "Home Page";
+    Layout = "~/Views/Admin/_AdminLayout.cshtml";
+}
+<h2 class="text-xl font-semibold mb-4">Danh sách tin đăng</h2>
+
+<div class="border-b mb-4">
+    <button class="text-red-600 font-semibold border-b-2 border-red-600 pb-2">Tất cả (0)</button>
+</div>
+
+<div class="mb-6">
+    <input type="text" placeholder="Tìm theo mã tin hoặc tiêu đề" class="w-full max-w-md px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
+</div>
+
+<div class="text-center text-gray-600 mt-16">
+    <img src="https://phongtro123.com/images/no-post.png" alt="no post" class="mx-auto w-40 opacity-60 mb-4">
+    <p class="mb-2">Tìm thấy 0 tin đăng</p>
+    <p>
+        Bấm <a href="#" class="text-blue-600 underline">vào đây</a> để bắt đầu đăng tin
+    </p>
+</div>
+<script>
+    //font-bold text-blue-800
+    document.getElementById('ListPostId').classList.add('font-bold', 'text-blue-800');
+</script>

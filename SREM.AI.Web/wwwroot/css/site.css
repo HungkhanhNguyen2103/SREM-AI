@@ -23,10 +23,5 @@ body {
     background-color: #FDF5ED;
 }
 
-a {
-    color:black !important;
-}
 
-    a:hover {
-        color: rgb(37 99 235 / var(--tw-text-opacity, 1)) !important;
-    }
+

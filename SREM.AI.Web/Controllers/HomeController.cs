@@ -18,6 +18,11 @@ namespace SREM.AI.Web.Controllers
             return View();
         }
 
+        public IActionResult ListFavorite()
+        {
+            return View();
+        }
+
         public IActionResult Privacy()
         {
             return View();
