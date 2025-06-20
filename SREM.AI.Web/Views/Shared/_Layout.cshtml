@@ -26,7 +26,7 @@
                     <i class="fas fa-map-marker-alt text-gray-500 mr-2"></i>
                     <input type="text" placeholder="Tìm theo khu vực" class="input-bootstrap bg-transparent outline-none w-full text-sm" />
                 </div>
-                <button class="ml-2 border rounded-full px-3 py-1 text-sm hover:bg-gray-100">
+                <button onclick="showFilterPopup()" class="ml-2 border rounded-full px-3 py-1 text-sm hover:bg-gray-100">
                     <i class="fas fa-filter mr-1"></i> Bộ lọc
                 </button>
             </div>
@@ -42,15 +42,15 @@
         <nav class="border-b border-gray-200 shadow-sm">
             <div class="container mx-auto px-4">
                 <ul class="flex space-x-6 text-base font-medium pt-4">
-                    <li><a href="/" class="nav-link border-b-2 pb-1">Phòng trọ</a></li>
-                    <li><a href="/nha-nguyen-can" class="nav-link border-b-2 pb-1">Nhà nguyên căn</a></li>
-                    <li><a href="/can-ho-chung-cu" class="nav-link border-b-2 pb-1">Căn hộ chung cư</a></li>
-                    <li><a href="/can-ho-mini" class="nav-link border-b-2 pb-1">Căn hộ mini</a></li>
-                    <li><a href="/can-ho-dich-vu" class="nav-link border-b-2 pb-1">Căn hộ dịch vụ</a></li>
-                    <li><a href="/o-ghep" class="nav-link border-b-2 pb-1">Ở ghép</a></li>
-                    <li><a href="/mat-bang" class="nav-link border-b-2 pb-1">Mặt bằng</a></li>
-                    <li><a href="/blog" class="nav-link border-b-2 pb-1">Blog</a></li>
-                    <li><a href="/bang-gia" class="nav-link border-b-2 pb-1">Bảng giá dịch vụ</a></li>
+                    <li><a href="/" id="listPostId" class="nav-link border-b-2 pb-1 border-white">Phòng trọ</a></li>
+                    <li><a href="/nha-nguyen-can" class="nav-link border-b-2 pb-1 border-white">Nhà nguyên căn</a></li>
+                    <li><a href="/can-ho-chung-cu" class="nav-link border-b-2 pb-1 border-white">Căn hộ chung cư</a></li>
+                    <li><a href="/can-ho-mini" class="nav-link border-b-2 pb-1 border-white">Căn hộ mini</a></li>
+                    <li><a href="/can-ho-dich-vu" class="nav-link border-b-2 pb-1 border-white">Căn hộ dịch vụ</a></li>
+                    <li><a href="/o-ghep" class="nav-link border-b-2 pb-1 border-white">Ở ghép</a></li>
+                    <li><a href="/mat-bang" class="nav-link border-b-2 pb-1 border-white">Mặt bằng</a></li>
+                    <li><a href="/blog" class="nav-link border-b-2 pb-1 border-white">Blog</a></li>
+                    <li><a href="/bang-gia" class="nav-link border-b-2 pb-1 border-white">Bảng giá dịch vụ</a></li>
                 </ul>
             </div>
         </nav>
@@ -59,25 +59,157 @@
     <main class=" mx-auto px-4 py-6" style="margin-right:14rem !important;margin-left:14rem !important">
         @RenderBody()
     </main>
+    <!-- Popup -->
+    <div id="filter-popup" class="hidden fixed inset-0 bg-black/30 flex items-center justify-center z-50">
+        <div class="bg-white rounded-2xl w-full max-w-lg shadow-lg">
+
+            <div class="sticky top-0 bg-white z-10 px-4 pt-4 pb-3 rounded-t-lg shadow-sm border-b mb-2">
+                <div class="flex justify-between items-center">
+                    <h2 class="text-lg font-semibold">Bộ lọc</h2>
+                    <button onclick="hideFilterPopup()" class="text-2xl text-gray-500 hover:text-red-500">&times;</button>
+                </div>
+            </div>
+
+            <div class="px-4 overflow-y-auto h-[60vh]">
+                <div class="mb-6">
+                    <h3 class="font-semibold mb-2">Danh mục cho thuê</h3>
+                    <div id="rental-type" class="grid grid-cols-3 gap-2">
+                        <button class="rental-btn border-2 border-orange-500 rounded-lg py-2 px-3 text-sm flex flex-col items-center bg-orange-50 text-orange-600 font-semibold">
+                            <span>Phòng trọ</span>
+                        </button>
+                        <button class="rental-btn border-2 rounded-lg py-2 px-1 text-sm flex flex-col items-center"><span>Nhà riêng</span></button>
+                        <button class="rental-btn border-2 rounded-lg py-2 px-1 text-sm flex flex-col items-center"><span>Ở ghép</span></button>
+                        <button class="rental-btn border-2 rounded-lg py-2 px-1 text-sm flex flex-col items-center"><span>Mặt bằng</span></button>
+                        <button class="rental-btn border-2 rounded-lg py-2 px-1 text-sm flex flex-col items-center"><span>Căn hộ chung cư</span></button>
+                        <button class="rental-btn border-2 rounded-lg py-2 px-1 text-sm flex flex-col items-center"><span>Căn hộ mini</span></button>
+                    </div>
+                </div>
+
+                <div class="mb-6">
+                    <h3 class="font-semibold mb-2">Lọc theo khu vực</h3>
+                    <div class="grid grid-cols-3 gap-2">
+                        <select class="border px-3 py-2 rounded-lg text-sm text-gray-700">
+                            <option>Hồ Chí Minh</option>
+                        </select>
+                        <select class="border px-3 py-2 rounded-lg text-sm text-gray-700">
+                            <option>Quận 8</option>
+                        </select>
+                        <select class="border px-3 py-2 rounded-lg text-sm text-gray-700">
+                            <option>Tất cả</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="mb-6">
+                    <h3 class="font-semibold mb-2">Khoảng giá</h3>
+                    <div id="rental-type-price" class="flex flex-wrap gap-2">
+                        <button class="rental-btn border-2 border-orange-500 rounded-full px-4 py-1 text-sm bg-orange-50 text-orange-600 font-semibold">Tất cả</button>
+                        <button class="rental-btn border-2 rounded-full px-4 py-1 text-sm">Dưới 1 triệu</button>
+                        <button class="rental-btn border-2 rounded-full px-4 py-1 text-sm">1 - 2 triệu</button>
+                        <button class="rental-btn border-2 rounded-full px-4 py-1 text-sm">2 - 3 triệu</button>
+                        <button class="rental-btn border-2 rounded-full px-4 py-1 text-sm">3 - 5 triệu</button>
+                        <button class="rental-btn border-2 rounded-full px-4 py-1 text-sm">5 - 7 triệu</button>
+                        <button class="rental-btn border-2 rounded-full px-4 py-1 text-sm">7 - 10 triệu</button>
+                        <button class="rental-btn border-2 rounded-full px-4 py-1 text-sm">10 - 15 triệu</button>
+                        <button class="rental-btn border-2 rounded-full px-4 py-1 text-sm">Trên 15 triệu</button>
+                    </div>
+                </div>
+
+                <div class="mb-6">
+                    <h3 class="font-semibold mb-2">Khoảng diện tích</h3>
+                    <div id="rental-type-acreage" class="flex flex-wrap gap-2">
+                        <button class="rental-btn border-2 border-orange-500 rounded-full px-4 py-1 text-sm bg-orange-50 text-orange-600 font-semibold">Tất cả</button>
+                        <button class="rental-btn border-2 rounded-full px-4 py-1 text-sm">Dưới 20m²</button>
+                        <button class="rental-btn border-2 rounded-full px-4 py-1 text-sm">Từ 20m² - 30m²</button>
+                        <button class="rental-btn border-2 rounded-full px-4 py-1 text-sm">Từ 30m² - 50m²</button>
+                        <button class="rental-btn border-2 rounded-full px-4 py-1 text-sm">Từ 50m² - 70m²</button>
+                        <button class="rental-btn border-2 rounded-full px-4 py-1 text-sm">Từ 70m² - 90m²</button>
+                        <button class="rental-btn border-2 rounded-full px-4 py-1 text-sm">Trên 90m²</button>
+                    </div>
+                </div>
+
+                <div class="mb-6">
+                    <h3 class="font-semibold mb-2">Đặc điểm nổi bật</h3>
+                    <div id="rental-type-special" class="flex flex-wrap gap-2">
+                        <button class="rental-btn border-2 rounded-full px-4 py-1 text-sm">Đầy đủ nội thất</button>
+                        <button class="rental-btn border-2 rounded-full px-4 py-1 text-sm">Có gác</button>
+                        <button class="rental-btn border-2 rounded-full px-4 py-1 text-sm">Kệ bếp</button>
+                        <button class="rental-btn border-2 rounded-full px-4 py-1 text-sm">Có máy lạnh</button>
+                        <button class="rental-btn border-2 rounded-full px-4 py-1 text-sm">Có máy giặt</button>
+                        <button class="rental-btn border-2 rounded-full px-4 py-1 text-sm">Có tủ lạnh</button>
+                        <button class="rental-btn border-2 rounded-full px-4 py-1 text-sm">Có thang máy</button>
+                        <button class="rental-btn border-2 rounded-full px-4 py-1 text-sm">Không chung chủ</button>
+                        <button class="rental-btn border-2 rounded-full px-4 py-1 text-sm">Giờ giấc tự do</button>
+                        <button class="rental-btn border-2 rounded-full px-4 py-1 text-sm">Có bảo vệ 24/24</button>
+                        <button class="rental-btn border-2 rounded-full px-4 py-1 text-sm">Có hầm để xe</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sticky bottom-0 bg-white w-full px-4 pt-2 pb-4 border-t rounded-b-lg">
+                <button class="w-full bg-orange-500 hover:bg-orange-600 text-white font-semibold py-3 rounded-xl text-base shadow">Áp dụng</button>
+            </div>
+
+        </div>
+    </div>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
     <script>
-        document.addEventListener("DOMContentLoaded", () => {
-          const currentPath = window.location.pathname;
-          const links = document.querySelectorAll(".nav-link");
+        function hideFilterPopup() {
+            document.getElementById('filter-popup').classList.add('hidden');
+        }
 
-          links.forEach(link => {
-            const href = link.getAttribute("href");
-            if (href === currentPath || (href !== "/" && currentPath.startsWith(href))) {
-              link.classList.add("text-orange-500", "border-orange-500");
-            } else {
-              link.classList.add("text-black", "border-transparent");
-            }
-          });
-        });
+        function showFilterPopup() {
+            document.getElementById('filter-popup').classList.remove('hidden');
+        }
+        listSelectedSingleChoice();
+        selectedMultipleChoice('rental-type-special');
+        function listSelectedSingleChoice(){
+            const listSelecter = ['rental-type','rental-type-price','rental-type-acreage'];
+            listSelecter.forEach(item => {
+                selectedSingleChoice(item);
+            });
+        }
+
+        function selectedSingleChoice(idSelecter){
+            const buttons = document.querySelectorAll(`#${idSelecter} .rental-btn`);
+
+            buttons.forEach(btn => {
+              btn.addEventListener('click', () => {
+                buttons.forEach(b => {
+                  b.classList.remove('border-orange-500','bg-orange-50', 'text-orange-600', 'font-semibold');
+                  b.classList.add('border-gray-300','bg-white');
+                });
+                btn.classList.remove('border-gray-300','bg-white');
+                btn.classList.add('border-orange-500', 'bg-orange-50','text-orange-600', 'font-semibold');
+              });
+            });
+        }
+
+        function selectedMultipleChoice(idSelecter){
+            const buttons = document.querySelectorAll(`#${idSelecter} .rental-btn`);
+
+            buttons.forEach(btn => {
+              btn.addEventListener('click', () => {
+                buttons.forEach(b => {
+
+                });
+                if(btn.classList.contains('border-orange-500')){
+                    btn.classList.remove('border-orange-500','bg-orange-50', 'text-orange-600', 'font-semibold');
+                    btn.classList.add('border-gray-300','bg-white');
+                }
+                else{
+                    btn.classList.remove('border-gray-300','bg-white');
+                    btn.classList.add('border-orange-500', 'bg-orange-50','text-orange-600', 'font-semibold');
+                }
+
+              });
+            });
+        }
+
     </script>
 </body>
 </html>

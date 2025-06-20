@@ -54,7 +54,7 @@
                 </div>
 
                 <div class="px-4 py-3">
-                    <h3 class="font-bold text-red-600 text-base uppercase leading-snug">
+                    <h3 onclick="window.location.href='/Home/Detail'" style="cursor:pointer" class="font-bold text-red-600 text-base uppercase leading-snug">
                         ⭐⭐⭐⭐⭐ Phòng trọ mới rất đẹp số 373/1 Đường Lý Thường Kiệt, Quận Tân Bình - Gần bên trường ĐH Bách Khoa
                     </h3>
 
@@ -155,3 +155,7 @@
         </div>
     </div>
 </div>
+<script>
+    document.getElementById('listPostId').classList.add("text-orange-500");
+    document.getElementById('listPostId').classList.replace("border-white", "border-orange-500");
+</script>
